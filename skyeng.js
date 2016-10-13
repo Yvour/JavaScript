@@ -189,17 +189,17 @@ function showWord(wordInfoString) {
 
 
             d.innerHTML += '<img id = skyeng_word_info_preview_image class = skyeng_word_info_preview_image hidden>';
-            d.innerHTML += '<style>[hidden] { display: none }.skyeng_word_meaning[active] {font-weight:bold} .skyeng_word_info_image{width:640px;height:480px}  .skyeng_word_info_preview_image{width:640px;height:480px} .skyeng_text{color:gray}</style>'
+            d.innerHTML += '<style>.bordered{padding-left:10px} [hidden] { display: none }.skyeng_word_meaning[active] {font-weight:bold} .skyeng_word_info_image{width:640px;height:480px}  .skyeng_word_info_preview_image{width:640px;height:480px} .skyeng_text{color:gray}</style>'
 
 
             var first_mean;
             var txt = document.createElement('div');
-            txt.setAttribute('class', 'skyeng_text');
+            txt.setAttribute('class', 'skyeng_text bordered');
             txt.innerHTML = main_info.text;
             d.appendChild(txt);
             for (i = 0; i < main_info.meanings.length; i++) {
                 mean = document.createElement('div');
-                mean.setAttribute('class', 'skyeng_word_meaning');
+                mean.setAttribute('class', 'skyeng_word_meaning bordered');
                 mean.setAttribute('image_url', main_info.meanings[i].image_url);
                 mean.setAttribute('preview_image_url', main_info.meanings[i].preview_image_url);
                 mean.setAttribute('meaning_number', (i + 1));
