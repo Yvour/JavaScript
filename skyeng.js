@@ -2,6 +2,16 @@
  * 2016-10-14 Ivan V. Urvanov for Skyeng
  */
 
+
+function getProtocol(){
+    return (document.URL.split('//')[0] == 'https:')?'https:':'http:';
+}
+
+function getStyle(elem) {
+  return window.getComputedStyle ? getComputedStyle(elem, "") : elem.currentStyle;
+}
+
+
 (function (ELEMENT) {
     ELEMENT.matches = ELEMENT.matches || ELEMENT.mozMatchesSelector || ELEMENT.msMatchesSelector || ELEMENT.oMatchesSelector || ELEMENT.webkitMatchesSelector;
     ELEMENT.closest = ELEMENT.closest || function closest(selector) {
@@ -114,7 +124,7 @@ function getSelectionText() {
 var translation = '';
 function getTranslation() {
     "use strict";
-    var url = "http://dictionary.skyeng.ru/api/v2/search-word-translation?text=";
+    var url = getProtocol()+ "//dictionary.skyeng.ru/api/v2/search-word-translation?text=";
     var text = getSelectionText() + '';
 
     if (text.split(/\s+/).join('').length > 0) {
@@ -151,8 +161,8 @@ function StartImgLoad(word_element) {
     var image = document.getElementById('skyeng_word_info_image');
     preview.hidden = false;
     image.hidden = true;
-    preview.src = 'http:' + word_element.getAttribute('preview_image_url');
-    image.src = 'http:' + word_element.getAttribute('image_url');
+    preview.src = getProtocol()+ word_element.getAttribute('preview_image_url');
+    image.src = getProtocol()+ word_element.getAttribute('image_url');
     image.onload = changeLoadedImg;
 
 }
@@ -223,7 +233,7 @@ function showWord(wordInfoString) {
 
                 d.appendChild(mean);
             }
-            var body_width = parseInt(getComputedStyle(document.body).width);
+            var body_width = parseInt(getStyle(document.body).width);
 
             document.body.appendChild(d);
 
